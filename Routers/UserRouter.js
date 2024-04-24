@@ -7,6 +7,7 @@ export const userRouter = () => {
   const userController = new UserController()
 
   uRouter.get('/', userController.getAll)
+  uRouter.post('/', userController.create)
 
   return uRouter
 }

@@ -1,2 +1,18 @@
-### GET ALL MOVIES
+### GET ALL USERS
 GET http://localhost:3000/user
+
+### CREATE USER
+
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "document_type": "CC",
+  "document_number": 1000002,
+  "first_name": "Leonardo",
+  "last_name": "Quevedo",
+  "age": 26,
+  "birthdate": "2020-10-10",
+	"user_name":"leo",
+	"user_password":"loquesea"
+}
