@@ -1,5 +1,5 @@
 import { UserModel } from '../Models/UserModel.js'
-import { validateUser } from '../Schemas/validateUser.js'
+import { validatePartialUser, validateUser } from '../Schemas/validateUser.js'
 
 export class UserController {
   constructor () {
@@ -19,6 +19,20 @@ export class UserController {
     }
 
     const { status, data } = await this.userModel.create({ input: result.data })
+
+    return res.status(status).json(data)
+  }
+
+  update = async (req, res) => {
+    const result = validatePartialUser({ input: req.body })
+
+    if (result.error) {
+      return res.status(422).json({ error: JSON.parse(result.error.message) })
+    }
+
+    const { id } = req.params
+
+    const { status, data } = await this.userModel.update({ id, input: result.data })
 
     return res.status(status).json(data)
   }

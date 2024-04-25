@@ -16,3 +16,13 @@ Content-Type: application/json
 	"email":"leo@gmail.com",
 	"user_password":"loquesea"
 }
+
+### UPDATE USER
+PATCH http://localhost:3000/user/1000002
+Content-Type: application/json
+
+{
+  "first_name": "Juan",
+  "last_name": "Rodriguez",
+  "user_password": "1245Otro"
+}
