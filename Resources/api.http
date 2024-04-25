@@ -13,6 +13,6 @@ Content-Type: application/json
   "last_name": "Quevedo",
   "age": 26,
   "birthdate": "2020-10-10",
-	"user_name":"leo",
+	"email":"leo@gmail.com",
 	"user_password":"loquesea"
 }

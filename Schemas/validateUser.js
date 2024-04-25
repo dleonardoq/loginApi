@@ -7,7 +7,7 @@ const userSchema = z.object({
   last_name: z.string(),
   age: z.number().int(),
   birthdate: z.string().date(),
-  user_name: z.string(),
+  email: z.string().email(),
   user_password: z.string()
 })
 

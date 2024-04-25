@@ -12,7 +12,7 @@ export class UserModel {
       await psqlClient.connect()
 
       const result = await psqlClient.query(
-        'SELECT document_type, document_number, first_name, last_name, age, birthdate FROM users;'
+        'SELECT document_type, document_number, first_name, last_name, age, birthdate, email FROM users;'
       )
 
       psqlClient.end()
@@ -35,8 +35,11 @@ export class UserModel {
 
       if (this.notAllowedStatus.includes(status)) {
         // TODO: create logs file to add error messages
+        console.log(data)
         return { status, data: { message: 'Error when trying to insert user' } }
       }
+
+      psqlClient.end()
 
       return { status, data }
     } catch (error) {
