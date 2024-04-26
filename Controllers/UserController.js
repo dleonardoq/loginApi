@@ -36,4 +36,12 @@ export class UserController {
 
     return res.status(status).json(data)
   }
+
+  delete = async (req, res) => {
+    const { id } = req.params
+
+    const { status, data } = await this.userModel.delete({ id })
+
+    return res.status(status).json(data)
+  }
 }

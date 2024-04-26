@@ -53,10 +53,31 @@ export class UserModel {
       const psqlClient = await getPsqlClient(dataConnection)
       await psqlClient.connect()
 
-      // TODO: create trigger for updating email
       const result = await psqlClient.query('SELECT update_user($1, $2)', [id, input])
-
       const { status, data } = result.rows[0].update_user
+
+      if (this.notAllowedStatus.includes(status)) {
+        // TODO: create logs file to add error messages
+        console.log(data)
+        return { status, data: { message: 'Error when trying to update user' } }
+      }
+
+      psqlClient.end()
+
+      return { status, data }
+    } catch (error) {
+      console.log('Error -> ', error)
+      return { status: 500, data: { message: 'Internal server error' } }
+    }
+  }
+
+  delete = async ({ id }) => {
+    try {
+      const psqlClient = await getPsqlClient(dataConnection)
+      await psqlClient.connect()
+
+      const result = await psqlClient.query('SELECT delete_user($1)', [id])
+      const { status, data } = result.rows[0].delete_user
 
       if (this.notAllowedStatus.includes(status)) {
         // TODO: create logs file to add error messages

@@ -8,21 +8,24 @@ Content-Type: application/json
 
 {
   "document_type": "CC",
-  "document_number": 1000002,
-  "first_name": "Leonardo",
-  "last_name": "Quevedo",
-  "age": 26,
+  "document_number": 1000003,
+  "first_name": "Daniel",
+  "last_name": "Ruiz",
+  "age": 24,
   "birthdate": "2020-10-10",
-	"email":"leo@gmail.com",
-	"user_password":"loquesea"
+	"email":"daniel@gmail.com",
+	"user_password":"password2"
 }
 
 ### UPDATE USER
-PATCH http://localhost:3000/user/1000002
+PATCH http://localhost:3000/user/1000003
 Content-Type: application/json
 
 {
-  "first_name": "Juan",
-  "last_name": "Rodriguez",
-  "user_password": "1245Otro"
+  "first_name": "su mama",
+  "user_password": "otramama"
 }
+
+### DELETE USER
+
+DELETE http://localhost:3000/user/1000003

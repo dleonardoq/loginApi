@@ -9,6 +9,7 @@ export const userRouter = () => {
   uRouter.get('/', userController.getAll)
   uRouter.post('/', userController.create)
   uRouter.patch('/:id', userController.update)
+  uRouter.delete('/:id', userController.delete)
 
   return uRouter
 }
