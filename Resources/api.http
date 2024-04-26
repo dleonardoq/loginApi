@@ -1,8 +1,10 @@
 ### GET ALL USERS
 GET http://localhost:3000/user
 
-### CREATE USER
+### GER USER BY DOCUMENT NUMBER
+GET http://localhost:3000/user?id=1000003
 
+### CREATE USER
 POST http://localhost:3000/user
 Content-Type: application/json
 
@@ -24,7 +26,7 @@ Content-Type: application/json
 {
   "first_name": "Davinchi",
   "user_password": "davidPassword",
-  "email":"Davinchi@gmail.com"
+  "email":"davinchi@gmail.com"
 }
 
 ### DELETE USER

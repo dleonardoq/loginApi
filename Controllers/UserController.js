@@ -6,8 +6,10 @@ export class UserController {
     this.userModel = new UserModel()
   }
 
-  getAll = async (req, res) => {
-    const { status, data } = await this.userModel.getAll()
+  getUsers = async (req, res) => {
+    const { id } = req.query ?? false
+
+    const { status, data } = await this.userModel.getUsers({ id })
     return res.status(status).json(data)
   }
 
