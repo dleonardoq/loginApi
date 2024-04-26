@@ -9,11 +9,11 @@ Content-Type: application/json
 {
   "document_type": "CC",
   "document_number": 1000003,
-  "first_name": "Daniel",
+  "first_name": "David",
   "last_name": "Ruiz",
   "age": 24,
   "birthdate": "2020-10-10",
-	"email":"daniel@gmail.com",
+	"email":"david@gmail.com",
 	"user_password":"password2"
 }
 
@@ -22,8 +22,9 @@ PATCH http://localhost:3000/user/1000003
 Content-Type: application/json
 
 {
-  "first_name": "su mama",
-  "user_password": "otramama"
+  "first_name": "Davinchi",
+  "user_password": "davidPassword",
+  "email":"Davinchi@gmail.com"
 }
 
 ### DELETE USER
