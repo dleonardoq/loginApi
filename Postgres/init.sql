@@ -14,7 +14,7 @@ CREATE TABLE users (
 CREATE TABLE credentials (
 	id uuid DEFAULT gen_random_uuid() NOT NULL,
 	user_name character varying(100) NOT NULL,
-	user_password character varying(100) NOT NULL,
+	user_password character varying(255) NOT NULL,
 	fk_users uuid NOT NULL
 );
 

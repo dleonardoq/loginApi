@@ -8,7 +8,7 @@ const userSchema = z.object({
   age: z.number().int(),
   birthdate: z.string().date(),
   email: z.string().email(),
-  user_password: z.string()
+  user_password: z.string().min(8)
 })
 
 export const validateUser = ({ input }) => {

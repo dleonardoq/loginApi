@@ -1,5 +1,6 @@
 import { dataConnection } from '../Postgres/dataConection.js'
 import { getPsqlClient } from '../Postgres/postgresDB.js'
+import { createHash } from 'node:crypto'
 
 export class UserModel {
   constructor () {
@@ -19,7 +20,9 @@ export class UserModel {
       if (!id) {
         result = await psqlClient.query('SELECT document_type, document_number, first_name, last_name, age, birthdate, email FROM users;')
       } else {
-        result = await psqlClient.query('SELECT document_type, document_number, first_name, last_name, age, birthdate, email FROM users WHERE document_number = $1;', [id])
+        result =
+        await psqlClient
+          .query('SELECT document_type, document_number, first_name, last_name, age, birthdate, email FROM users WHERE document_number = $1;', [id])
       }
 
       if (result.rows.length === 0) {
@@ -39,6 +42,11 @@ export class UserModel {
     try {
       const psqlClient = await getPsqlClient(dataConnection)
       await psqlClient.connect()
+
+      input.user_password =
+      createHash('sha256')
+        .update(`${input.user_password}-2024`)
+        .digest('hex')
 
       const result = await psqlClient.query('SELECT insert_user($1)', [input])
 

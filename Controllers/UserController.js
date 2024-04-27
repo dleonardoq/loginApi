@@ -1,5 +1,5 @@
 import { UserModel } from '../Models/UserModel.js'
-import { validatePartialUser, validateUser } from '../Schemas/validateUser.js'
+import { validatePartialUser, validateUser } from '../Schemas/validateUserData.js'
 
 export class UserController {
   constructor () {
