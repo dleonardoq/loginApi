@@ -1,5 +1,6 @@
 import { UserModel } from '../Models/UserModel.js'
 import { validatePartialUser, validateUser } from '../Schemas/validateUserData.js'
+import { validateUserLogin } from '../Schemas/validateUserLogin.js'
 
 export class UserController {
   constructor () {
@@ -43,6 +44,18 @@ export class UserController {
     const { id } = req.params
 
     const { status, data } = await this.userModel.delete({ id })
+
+    return res.status(status).json(data)
+  }
+
+  login = async (req, res) => {
+    const result = validateUserLogin({ input: req.body })
+
+    if (result.error) {
+      return { status: 422, data: { error: JSON.parse(result.error.message) } }
+    }
+
+    const { status, data } = await this.userModel.login({ input: result.data })
 
     return res.status(status).json(data)
   }

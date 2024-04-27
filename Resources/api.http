@@ -1,34 +1,46 @@
 ### GET ALL USERS
 GET http://localhost:3000/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
+
 
 ### GER USER BY DOCUMENT NUMBER
 GET http://localhost:3000/user?id=1000001
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
 
 ### CREATE USER
 POST http://localhost:3000/user
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
 
 {
   "document_type": "CC",
-  "document_number": 1000001,
-  "first_name": "Leonardo",
-  "last_name": "Quevedo",
+  "document_number": 1000002,
+  "first_name": "david",
+  "last_name": "Ruiz",
   "age": 24,
   "birthdate": "2020-10-10",
-	"email":"leonardo@gmail.com",
-	"user_password":"password2"
+	"email":"david@gmail.com",
+	"user_password":"1234asdfh"
 }
 
 ### UPDATE USER
 PATCH http://localhost:3000/user/1000001
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
 
 {
-  "first_name": "leonardiño",
-  "user_password": "davidPassword",
-  "email":"leonardo2@gmail.com"
+  "user_password": "pass123456"
 }
 
 ### DELETE USER
-
 DELETE http://localhost:3000/user/1000001
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
+
+### LOGIN USER 
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+  "email": "leonardoa@gmail.com",
+  "user_password": "leoPassword"
+}

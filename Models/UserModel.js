@@ -1,6 +1,8 @@
 import { dataConnection } from '../Postgres/dataConection.js'
 import { getPsqlClient } from '../Postgres/postgresDB.js'
 import { createHash } from 'node:crypto'
+import { JWT_EXPIRES, JWT_KEY } from '../Utils/config.js'
+import jwt from 'jsonwebtoken'
 
 export class UserModel {
   constructor () {
@@ -68,6 +70,15 @@ export class UserModel {
   }
 
   update = async ({ id, input }) => {
+    const keyPass = 'user_password'
+
+    if (Object.keys(input).includes(keyPass)) {
+      input.user_password =
+      createHash('sha256')
+        .update(`${input.user_password}-2024`)
+        .digest('hex')
+    }
+
     try {
       const psqlClient = await getPsqlClient(dataConnection)
       await psqlClient.connect()
@@ -107,6 +118,59 @@ export class UserModel {
       psqlClient.end()
 
       return { status, data }
+    } catch (error) {
+      console.log('Error -> ', error)
+      return { status: 500, data: { message: 'Internal server error' } }
+    }
+  }
+
+  login = async ({ input }) => {
+    try {
+      const psqlClient = await getPsqlClient(dataConnection)
+      await psqlClient.connect()
+
+      input.user_password =
+      createHash('sha256')
+        .update(`${input.user_password}-2024`)
+        .digest('hex')
+
+      console.log(input)
+
+      const result =
+      await psqlClient
+        .query(
+          `SELECT U.first_name || ' ' || U.last_name AS full_name,
+            U.email,
+            U.document_number
+          FROM users U
+          WHERE EXISTS(
+            SELECT 1
+            FROM credentials C
+            WHERE C.fk_users = U.id
+            AND C.user_name = $1
+            AND C.user_password = $2
+          );`,
+          [input.email, input.user_password]
+        )
+
+      psqlClient.on('error', (err) => {
+        console.log(err)
+        return { status: 500, data: { message: 'Internal server error' } }
+      })
+
+      psqlClient.end()
+
+      if (!result.rowCount) {
+        return { status: 401, data: { message: 'Incorrect user name or password' } }
+      }
+
+      const userData = result.rows[0]
+
+      const token = jwt.sign({ id: userData.document_number }, JWT_KEY, { expiresIn: JWT_EXPIRES })
+
+      userData.jwt = token
+
+      return { status: 200, data: userData }
     } catch (error) {
       console.log('Error -> ', error)
       return { status: 500, data: { message: 'Internal server error' } }
