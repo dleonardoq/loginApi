@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  login_node:
+    container_name: login_node
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - login_users_api
+    volumes:
+      - .:/var/www/html/loginApp
+
+  login_psql:
+    container_name: login_psql
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=users  
+      - POSTGRES_USER=leonardo
+      - POSTGRES_PASSWORD=TooR
+    volumes:
+      - ./Postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - data-postgres:/var/lib/postgresql/data-postgres
+    networks:
+      - login_users_api
+
+networks:
+  login_users_api:
+
+volumes:
+  data-postgres:
