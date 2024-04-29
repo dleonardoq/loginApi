@@ -2,6 +2,7 @@ import { dataConnection } from '../../config/Postgres/dataConection.js'
 import { getPsqlClient } from '../../config/Postgres/postgresDB.js'
 import { createHash } from 'node:crypto'
 import { JWT_EXPIRES, JWT_KEY } from '../../config/configVariables.js'
+import { logger } from '../../Utils/createLogger.js'
 import jwt from 'jsonwebtoken'
 
 export class UserModel {
@@ -35,7 +36,7 @@ export class UserModel {
 
       return { status: 200, data: result.rows }
     } catch (error) {
-      console.log('Error -> ', error)
+      logger.error('Error ->', error)
       return { status: 500, data: { message: 'Internal server error' } }
     }
   }
@@ -45,13 +46,12 @@ export class UserModel {
       const psqlClient = await getPsqlClient(dataConnection)
       await psqlClient.connect()
 
-      const result = await psqlClient.query('SELECT insert_user($1)', [input])
+      const result = await psqlClient.quesry('SELECT insert_user($1)', [input])
 
       const { status, data } = result.rows[0].insert_user
 
       if (this.notAllowedStatus.includes(status)) {
-        // TODO: create logs file to add error messages
-        console.log(data)
+        logger.error(data)
         return { status, data: { message: 'Error when trying to insert user' } }
       }
 
@@ -59,7 +59,7 @@ export class UserModel {
 
       return { status, data }
     } catch (error) {
-      console.log('Error -> ', error)
+      logger.error('Error ->', error)
       return { status: 500, data: { message: 'Internal server error' } }
     }
   }
@@ -73,8 +73,7 @@ export class UserModel {
       const { status, data } = result.rows[0].update_user
 
       if (this.notAllowedStatus.includes(status)) {
-        // TODO: create logs file to add error messages
-        console.log(data)
+        logger.error(data)
         return { status, data: { message: 'Error when trying to update user' } }
       }
 
@@ -82,7 +81,7 @@ export class UserModel {
 
       return { status, data }
     } catch (error) {
-      console.log('Error -> ', error)
+      logger.error('Error ->', error)
       return { status: 500, data: { message: 'Internal server error' } }
     }
   }
@@ -96,8 +95,7 @@ export class UserModel {
       const { status, data } = result.rows[0].delete_user
 
       if (this.notAllowedStatus.includes(status)) {
-        // TODO: create logs file to add error messages
-        console.log(data)
+        logger.error(data)
         return { status, data: { message: 'Error when trying to update user' } }
       }
 
@@ -105,7 +103,7 @@ export class UserModel {
 
       return { status, data }
     } catch (error) {
-      console.log('Error -> ', error)
+      logger.error('Error ->', error)
       return { status: 500, data: { message: 'Internal server error' } }
     }
   }
@@ -119,8 +117,6 @@ export class UserModel {
       createHash('sha256')
         .update(`${input.user_password}-2024`)
         .digest('hex')
-
-      console.log(input)
 
       const result =
       await psqlClient
@@ -140,7 +136,7 @@ export class UserModel {
         )
 
       psqlClient.on('error', (err) => {
-        console.log(err)
+        logger.error('Error -> ', err)
         return { status: 500, data: { message: 'Internal server error' } }
       })
 
@@ -158,7 +154,7 @@ export class UserModel {
 
       return { status: 200, data: userData }
     } catch (error) {
-      console.log('Error -> ', error)
+      logger.error('Error ->', error)
       return { status: 500, data: { message: 'Internal server error' } }
     }
   }

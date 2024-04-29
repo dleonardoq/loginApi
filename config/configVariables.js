@@ -5,3 +5,4 @@ export const POSTGRES_USER = process.env.POSTGRES_USER
 export const POSTGRES_PASS = process.env.POSTGRES_PASS
 export const JWT_KEY = process.env.JWT_KEY
 export const JWT_EXPIRES = process.env.JWT_EXPIRES
+export const ERR_LOG_FILE = process.env.ERR_LOG_FILE

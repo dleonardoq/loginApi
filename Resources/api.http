@@ -1,32 +1,32 @@
 ### GET ALL USERS
 GET http://localhost:3000/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExMTIyMjU1NSIsImlhdCI6MTcxNDM1NDMwOCwiZXhwIjoxNzE0NDQwNzA4fQ.E-UD7jUBVA3Rob1xfuM4qtn6NFLtAWHozG8Puj569zc
 
 
 ### GER USER BY DOCUMENT NUMBER
-GET http://localhost:3000/user?id=1000001
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
+GET http://localhost:3000/user?id=111222555
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExMTIyMjU1NSIsImlhdCI6MTcxNDM1NDMwOCwiZXhwIjoxNzE0NDQwNzA4fQ.E-UD7jUBVA3Rob1xfuM4qtn6NFLtAWHozG8Puj569zc
 
 ### CREATE USER
 POST http://localhost:3000/user
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExMTIyMjU1NSIsImlhdCI6MTcxNDM1NDMwOCwiZXhwIjoxNzE0NDQwNzA4fQ.E-UD7jUBVA3Rob1xfuM4qtn6NFLtAWHozG8Puj569zc
 
 {
   "document_type": "CC",
-  "document_number": 1000002,
-  "first_name": "david",
-  "last_name": "Ruiz",
-  "age": 24,
+  "document_number": 1000001,
+  "first_name": "Leonardo",
+  "last_name": "Quevedo",
+  "age": 26,
   "birthdate": "2020-10-10",
-	"email":"david@gmail.com",
+	"email":"leonardo@gmail.com",
 	"user_password":"1234asdfh"
 }
 
 ### UPDATE USER
 PATCH http://localhost:3000/user/1000001
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExMTIyMjU1NSIsImlhdCI6MTcxNDM1NDMwOCwiZXhwIjoxNzE0NDQwNzA4fQ.E-UD7jUBVA3Rob1xfuM4qtn6NFLtAWHozG8Puj569zc
 
 {
   "user_password": "pass123456"
@@ -34,13 +34,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0Ijox
 
 ### DELETE USER
 DELETE http://localhost:3000/user/1000001
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAwMDAwMSwiaWF0IjoxNzE0MjU5MzQzLCJleHAiOjE3MTQzNDU3NDN9.VY4_-4LslPCMNJq_QleOvMTkYZlGj3dztrzb69pC1Qs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExMTIyMjU1NSIsImlhdCI6MTcxNDM1NDMwOCwiZXhwIjoxNzE0NDQwNzA4fQ.E-UD7jUBVA3Rob1xfuM4qtn6NFLtAWHozG8Puj569zc
 
 ### LOGIN USER 
 POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-  "email": "leonardoa@gmail.com",
-  "user_password": "leoPassword"
+  "email": "admin@admin.com",
+  "user_password": "AdminPasS"
 }
