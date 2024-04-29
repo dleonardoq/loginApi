@@ -225,7 +225,7 @@ CREATE FUNCTION update_user(integer, jsonb) RETURNS json
 				)
 			THEN
 	
-				UPDATE credentials SET user_password = $2->>'user_password'
+				UPDATE credentials SET user_password = encode(digest($2->>'user_password'||'-2024', 'sha256'),'hex')
 				WHERE fk_users = (SELECT id FROM users U WHERE U.document_number = $1);
 
 				-- remove user_password element from given json 
