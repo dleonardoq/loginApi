@@ -45,11 +45,6 @@ export class UserModel {
       const psqlClient = await getPsqlClient(dataConnection)
       await psqlClient.connect()
 
-      input.user_password =
-      createHash('sha256')
-        .update(`${input.user_password}-2024`)
-        .digest('hex')
-
       const result = await psqlClient.query('SELECT insert_user($1)', [input])
 
       const { status, data } = result.rows[0].insert_user
@@ -70,15 +65,6 @@ export class UserModel {
   }
 
   update = async ({ id, input }) => {
-    const keyPass = 'user_password'
-
-    if (Object.keys(input).includes(keyPass)) {
-      input.user_password =
-      createHash('sha256')
-        .update(`${input.user_password}-2024`)
-        .digest('hex')
-    }
-
     try {
       const psqlClient = await getPsqlClient(dataConnection)
       await psqlClient.connect()

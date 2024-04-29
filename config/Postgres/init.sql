@@ -1,9 +1,11 @@
 \c users;
 
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 CREATE TABLE users (
 	id uuid DEFAULT gen_random_uuid() NOT NULL,
 	document_type character varying(5) NOT NULL,
-	document_number integer NOT NULL,
+	document_number bigint NOT NULL,
 	first_name character varying(100) NOT NULL,
 	last_name character varying(100) NOT NULL,
 	age integer NOT NULL,
@@ -99,9 +101,14 @@ CREATE FUNCTION delete_user(integer) RETURNS json
 $$;
 
 
-CREATE FUNCTION insert_user(json) RETURNS json
-    LANGUAGE plpgsql
-    AS $$
+CREATE OR REPLACE FUNCTION public.insert_user(
+	json)
+    RETURNS json
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $$
+
 DECLARE
 	user_id UUID;
 	credentials_id UUID;
@@ -117,7 +124,6 @@ BEGIN
 		);
 	END IF;
 
-
 	SELECT gen_random_uuid() INTO user_id;
 	SELECT gen_random_uuid() INTO credentials_id;
 	
@@ -130,7 +136,7 @@ BEGIN
 			$1->>'first_name',
 			$1->>'last_name',
 			($1->>'age')::INTEGER,
-			($1->>'birthdate')::DATE,
+			TO_DATE(($1->>'birthdate'), 'YYYY-MM-DD'),
 			$1->>'email'
 		)
 		RETURNING '{"document_number":'|| (document_number) ||'}'
@@ -146,7 +152,7 @@ BEGIN
 		INSERT INTO credentials VALUES(
 			credentials_id,
 			$1->>'email',
-			$1->>'user_password',
+			encode(digest($1->>'user_password'||'-2024', 'sha256'),'hex'),
 			user_id
 		)
 		RETURNING '{"user_name":"' || user_name || '"}'
@@ -275,3 +281,16 @@ CREATE FUNCTION update_email() RETURNS trigger
 $$;
 
 CREATE TRIGGER update_email_credentials AFTER UPDATE ON users FOR EACH ROW EXECUTE FUNCTION update_email();
+
+SELECT insert_user(
+	'{
+		"document_type": "CC",
+		"document_number": 111222555,
+		"first_name": "admin",
+		"last_name": "admin",
+		"age": 1,
+		"birthdate": "1910-01-01",
+		"email": "admin@admin.com",
+		"user_password": "AdminPasS"
+	}'
+)
