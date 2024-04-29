@@ -1,4 +1,4 @@
-import { JWT_KEY } from '../Utils/config.js'
+import { JWT_KEY } from '../../config/configVariables.js'
 import jwt from 'jsonwebtoken'
 
 export const validateAccessToken = (req, res, next) => {

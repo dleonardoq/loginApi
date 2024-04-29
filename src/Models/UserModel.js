@@ -1,7 +1,7 @@
-import { dataConnection } from '../Postgres/dataConection.js'
-import { getPsqlClient } from '../Postgres/postgresDB.js'
+import { dataConnection } from '../../config/Postgres/dataConection.js'
+import { getPsqlClient } from '../../config/Postgres/postgresDB.js'
 import { createHash } from 'node:crypto'
-import { JWT_EXPIRES, JWT_KEY } from '../Utils/config.js'
+import { JWT_EXPIRES, JWT_KEY } from '../../config/configVariables.js'
 import jwt from 'jsonwebtoken'
 
 export class UserModel {

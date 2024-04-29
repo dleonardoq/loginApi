@@ -1,4 +1,4 @@
-import { POSTGRES_DB, POSTGRES_HOST, POSTGRES_PASS, POSTGRES_PORT, POSTGRES_USER } from '../Utils/config.js'
+import { POSTGRES_DB, POSTGRES_HOST, POSTGRES_PASS, POSTGRES_PORT, POSTGRES_USER } from '../configVariables.js'
 
 export const dataConnection = {
   host: POSTGRES_HOST,

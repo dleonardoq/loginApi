@@ -1,5 +1,5 @@
 import express, { json } from 'express'
-import { userRouter } from '../Routers/UserRouter.js'
+import { userRouter } from './src/Routers/UserRouter.js'
 
 const app = express()
 app.disable('x-powered-by')
