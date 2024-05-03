@@ -1,0 +1,1 @@
+{"level":"error","message":{"error":"duplicate key value violates unique constraint \"users_document_number_key\""}}
