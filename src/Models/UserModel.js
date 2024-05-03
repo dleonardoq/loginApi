@@ -46,7 +46,7 @@ export class UserModel {
       const psqlClient = await getPsqlClient(dataConnection)
       await psqlClient.connect()
 
-      const result = await psqlClient.quesry('SELECT insert_user($1)', [input])
+      const result = await psqlClient.query('SELECT insert_user($1)', [input])
 
       const { status, data } = result.rows[0].insert_user
 
