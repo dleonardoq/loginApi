@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch --env-file .env app.js"
+    "dev": "NODE_ENV=development node --env-file .env --watch app.js",
+    "start": "NODE_ENV=production node --env-file .env app.js"
   },
   "keywords": [],
   "author": "",

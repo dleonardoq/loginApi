@@ -10,6 +10,8 @@ COPY package*.json /var/www/html/loginApp
 
 RUN pnpm install
 
+COPY . /var/www/html/loginApp
+
 EXPOSE 3000
 
 CMD ["pnpm", "run", "dev"]
