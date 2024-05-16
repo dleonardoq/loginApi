@@ -6,13 +6,17 @@
   "type": "module",
   "scripts": {
     "dev": "NODE_ENV=development node --env-file .env --watch app.js",
-    "start": "NODE_ENV=production node --env-file .env app.js"
+    "start": "NODE_ENV=production node --env-file .env app.js",
+    "test": "NODE_ENV=test node --env-file .env --experimental-vm-modules node_modules/jest/bin/jest.js --silent",
+    "test:watch": "pnpm run test -- --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "standard": "17.1.0"
+    "jest": "29.7.0",
+    "standard": "17.1.0",
+    "supertest": "7.0.0"
   },
   "dependencies": {
     "express": "4.19.2",
@@ -22,6 +26,12 @@
     "zod": "3.23.0"
   },
   "eslintConfig": {
-    "extends": "standard"
+    "extends": "standard",
+    "env": {
+      "jest": true
+    }
+  },
+  "jest":{
+    "testEnvironment": "node"
   }
 }

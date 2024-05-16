@@ -1,5 +1,6 @@
 import { JWT_KEY } from '../../config/configVariables.js'
 import jwt from 'jsonwebtoken'
+import { logger } from '../../Utils/createLogger.js'
 
 export const validateAccessToken = (req, res, next) => {
   try {
@@ -15,7 +16,7 @@ export const validateAccessToken = (req, res, next) => {
       next()
     })
   } catch (error) {
-    console.log('Error -> ', error)
+    logger.error('Error -> ', error)
     return { status: 500, data: { message: 'Internal server error' } }
   }
 }

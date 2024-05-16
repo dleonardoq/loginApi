@@ -1,11 +1,13 @@
 import { createLogger, format, transports } from 'winston'
-import { ERR_LOG_FILE } from '../config/configVariables.js'
+import { ERR_LOG_FILE, NODE_ENV } from '../config/configVariables.js'
 
 export const logger = createLogger({
   level: 'debug',
   format: format.json(),
-  transports: [
-    new transports.Console(),
-    new transports.File({ filename: ERR_LOG_FILE, level: 'error' })
-  ]
+  transports: (NODE_ENV === 'test')
+    ? []
+    : [
+        new transports.Console(),
+        new transports.File({ filename: ERR_LOG_FILE, level: 'error' })
+      ]
 })

@@ -9,5 +9,5 @@ export const JWT_EXPIRES = process.env.JWT_EXPIRES
 export const ERR_LOG_FILE = process.env.ERR_LOG_FILE
 export const POSTGRES_HOST_DEV = process.env.POSTGRES_HOST_DEV
 
-// it is send from
+// it is send from package.json
 export const NODE_ENV = process.env.NODE_ENV
