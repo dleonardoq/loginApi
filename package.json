@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "NODE_ENV=development node --env-file .env --watch app.js",
     "start": "NODE_ENV=production node --env-file .env app.js",
-    "test": "NODE_ENV=test node --env-file .env --experimental-vm-modules node_modules/jest/bin/jest.js --silent",
+    "test": "POSTGRES_HOST_DEV=localhost PORT=3001 NODE_ENV=test node --env-file .env --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "pnpm run test -- --watch"
   },
   "keywords": [],
