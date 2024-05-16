@@ -9,6 +9,8 @@
 - [Getting started](#getting-started)
 	- [Prerequisites](#prerequisites)
 	- [Instalation](#instalation)
+- [Endpoints](#endpoints)
+- [Tests](#tests)
 
 
 </details>
@@ -30,25 +32,25 @@
 ### Instalation
 1. Clone the repository
 ```sh
-   git clone https://github.com/dleonardoq/loginApi.git
+  git clone https://github.com/dleonardoq/loginApi.git
 ```
 2. Move into loginApi directory
 ```sh
-   cd loginApi
+  cd loginApi
 ```
 3. Start Docker Desktop if you have it (ignore this step if you only have docker engine)
 4. Run the next command if is in a develop environment
 ```sh
-   docker compose -f docker-compose-dev.yml up
+  docker compose -f docker-compose-dev.yml up
 ```
 5. Run the next command if is in a production environment
 ```sh
-   docker compose  up
+  docker compose  up
 ```
 6. You can test the different endpoints with the file api.http in the directory Resources, there's a admin user created by default to start, you can delete it after
 7. Before use almost all endpoints, you need to login 'cause this return a JWT
 
-### Endpoints localhost
+### Endpoints
 #### These endpoints return a json
 - GET http://localhost:3000/user
 	- Get all users, you need to send the JWT in the Authorization header
@@ -58,26 +60,26 @@
 	- Create a new user, you need to send the JWT in the Authorization header and body with the next parameters:
  ```sh
 {
-	// this is an example
-	"document_type": "CC",
-	"document_number": 111111,
-	"first_name": "first name ",
-	"last_name": "lasta name",
-	"age": age,
- 	"birthdate": "YYYY-MM-DD",  //date has to have this format
-	"email":"email",
-	"user_password":"password"
+  // this is an example
+  "document_type": "CC",
+  "document_number": 111111,
+  "first_name": "first name ",
+  "last_name": "lasta name",
+  "age": age,
+   "birthdate": "YYYY-MM-DD",  //date has to have this format
+  "email":"email",
+  "user_password":"password"
 }
 ```
 - PATCH http://localhost:3000/user/{user_document_number}
 	-  Update an user according to the user document number, you need to send the JWT in the Authorization header and in the body the parameters you want to update, Example:
 ```sh
 {
-	// this is an example
-	"first_name": "first name ",
-	"last_name": "lasta name",
-	"age": age,
- 	"email":"email",
+  // this is an example
+  "first_name": "first name ",
+  "last_name": "lasta name",
+  "age": age,
+  "email":"email",
 }
 ```
 Here we're updating first_name, last_name, age and email of the given user document number
@@ -89,9 +91,24 @@ Here we're updating first_name, last_name, age and email of the given user docum
 
 ```sh
 {
-	// this is an example
- 	"email":"email",
-	"user_password":"password"
+  // this is an example
+  "email":"email",
+  "user_password":"password"
 }
+```
+### Tests
+#### These tests should be only executed in develop environment, these are going to use the db and create registers in it
+1. Docker containers have to be running
+```sh
+{
+  docker compose -f docker-compose-dev.yml up
+  or
+  docker compose up
+}
+```
+2. Enter to the project directory
+3. Open the terminal an type:
+```sh
+  pnpm run test
 ```
 <p align="right">(<a href="#readme-top">Go back up</a>)</p>
