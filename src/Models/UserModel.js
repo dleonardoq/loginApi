@@ -28,11 +28,11 @@ export class UserModel {
           .query('SELECT document_type, document_number, first_name, last_name, age, birthdate, email FROM users WHERE document_number = $1;', [id])
       }
 
+      psqlClient.end()
+
       if (result.rows.length === 0) {
         return { status: 404, data: { error: 'Not users found' } }
       }
-
-      psqlClient.end()
 
       return { status: 200, data: result.rows }
     } catch (error) {
