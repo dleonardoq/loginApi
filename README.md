@@ -98,12 +98,10 @@ Here we're updating first_name, last_name, age and email of the given user docum
 ```
 ### Tests
 #### These tests should be only executed in develop environment, these are going to use the db and create registers in it
-1. Docker containers have to be running
+1. Docker dev containers have to be running
 ```sh
 {
   docker compose -f docker-compose-dev.yml up
-  or
-  docker compose up
 }
 ```
 2. Enter to the project directory
