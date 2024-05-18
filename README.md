@@ -56,7 +56,7 @@
 	 ![](https://raw.githubusercontent.com/dleonardoq/Myimages/main/docker_psql_name.png?token=GHSAT0AAAAAACSOKSP2TVR323JK2Y36MY6OZSH7ZKA)
 	in this example our host is login_psql, this is for prod, for dev is the same but with docker-compose-dev.yml
 
-	- The rest of the variables are on you, JWT_KEY is to validate if a user is logged, JWT_EXPIRES how long the session will be and ERR_LOG_FILE is the directory to create a log file, example: './logs/error_logs.log'
+	- The rest of the variables are on you, JWT_KEY is to validate if a user is logged (it's a text), JWT_EXPIRES how long the session will be (5m, 1h, etc) and ERR_LOG_FILE is the directory to create a log file, example: './logs/error_logs.log'
 	 	
 3. Start Docker Desktop if you have it (ignore this step if you only have docker engine)
 4. Run the next command if is in a develop environment
