@@ -38,6 +38,26 @@
 ```sh
   cd loginApi
 ```
+3. Env file configuration
+	- First you have to create the .env file with the .env.example file
+ 	```sh
+	  cp .env.example .env
+	```
+  	- Values from the variables POSTGRES_DB, POSTGRES_USER, POSTGRES_PASS should have the same values that are in the docker-compose.yml file, here an example:
+
+	![](https://raw.githubusercontent.com/dleonardoq/Myimages/main/docker-compose.png?token=GHSAT0AAAAAACSOKSP3IVXJP7NB6Q7NDVWCZSH7P7A)
+ 	- Value from variable POSTGRES_DB should have also, the same value in init.sql file, in this example, our db is called users, like this:
+
+  	![](https://raw.githubusercontent.com/dleonardoq/Myimages/main/sql_file.png?token=GHSAT0AAAAAACSOKSP2YXCV7Z6KEIBNHUIAZSH7SGQ)
+   	- Variable POSTGRES_DB_DEV is the same than POSTGRES_DB, but with docker-compose-dev.yml and dev.sql files
+   	- POSTGRES_PORT is usually 5432, this is the port that postgres usually uses
+   	- POSTGRES_HOST and POSTGRES_HOST_DEV should use the name of the postgres docker container, you can see this in the docke-compose.yml and docke-compose-dev.yml files, like this:
+
+	 ![](https://raw.githubusercontent.com/dleonardoq/Myimages/main/docker_psql_name.png?token=GHSAT0AAAAAACSOKSP2TVR323JK2Y36MY6OZSH7ZKA)
+	in this example our host is login_psql, this is for prod, for dev is the same but with docker-compose-dev.yml
+
+	- The rest of the variables are on you, JWT_KEY is to validate if a user is logged, JWT_EXPIRES how long the session will be and ERR_LOG_FILE is the directory to create a log file, example: './logs/error_logs.log'
+	 	
 3. Start Docker Desktop if you have it (ignore this step if you only have docker engine)
 4. Run the next command if is in a develop environment
 ```sh
