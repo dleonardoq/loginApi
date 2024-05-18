@@ -125,7 +125,11 @@ Here we're updating first_name, last_name, age and email of the given user docum
 }
 ```
 2. Enter to the project directory
-3. Open the terminal an type:
+3. Before running test, be sure you have all dependencies by running
+```sh
+  pnpm install
+```
+4. Open the terminal an type:
 ```sh
   pnpm run test
 ```
