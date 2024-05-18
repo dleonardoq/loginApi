@@ -125,7 +125,7 @@ Here we're updating first_name, last_name, age and email of the given user docum
 }
 ```
 2. Enter to the project directory
-3. Before running test, be sure you have all dependencies by running
+3. Before running test, be sure you have all dependencies, you can do this by running
 ```sh
   pnpm install
 ```
