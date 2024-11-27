@@ -43,7 +43,7 @@
  	```sh
 	  cp .env.example .env
 	```
-  	- In .evn file, Values from the variables POSTGRES_DB, POSTGRES_USER, POSTGRES_PASS should have the same values that are in the docker-compose.yml file, here an example:
+  	- In .evn file, Values from the variables POSTGRES_DB, POSTGRES_USER, POSTGRES_PASS should have the same values that are in the docker-compose.yml file (you can use your own values, just make sure are the same in these files), here an example:
 
 	![](https://raw.githubusercontent.com/dleonardoq/Myimages/refs/heads/main/docker-compose.png?token=GHSAT0AAAAAAC2P3HDYVN3PYJIA7UEGRRHYZ2GPIOA)
  	- Value from variable POSTGRES_DB should have also, the same value in init.sql file, in this example, our db is called users, like this:
@@ -51,7 +51,7 @@
   	![](https://raw.githubusercontent.com/dleonardoq/Myimages/refs/heads/main/sql_file.png?token=GHSAT0AAAAAAC2P3HDZ5DACCXCOGUQJRUSOZ2GPJUQ)
    	- Variable POSTGRES_DB_DEV is the same than POSTGRES_DB, but with docker-compose-dev.yml and dev.sql files
    	- POSTGRES_PORT is usually 5432, this is the port that postgres usually uses
-   	- POSTGRES_HOST and POSTGRES_HOST_DEV should use the name of the postgres docker container, you can see this in the docke-compose.yml and docke-compose-dev.yml files, like this:
+   	- POSTGRES_HOST and POSTGRES_HOST_DEV should use the name of the postgres docker container, you can see this in the docke-compose.yml and docker-compose-dev.yml files, like this:
 
 	 ![](https://raw.githubusercontent.com/dleonardoq/Myimages/refs/heads/main/docker_psql_name.png?token=GHSAT0AAAAAAC2P3HDZ6GP3KD2BZVO4FDNGZ2GPKBQ)
 	in this example our host is login_psql, this is for prod, for dev is the same but with docker-compose-dev.yml
