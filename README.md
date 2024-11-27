@@ -126,6 +126,7 @@ Here we're updating first_name, last_name, age and email of the given user docum
 2. Enter to the project directory
 3. Before running test, be sure you have all dependencies, you can do this by running
 ```sh
+  docker exec -it [container-name] bash
   pnpm install
 ```
 4. Open the terminal an type:
