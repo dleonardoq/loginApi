@@ -43,7 +43,7 @@
  	```sh
 	  cp .env.example .env
 	```
-  	- Values from the variables POSTGRES_DB, POSTGRES_USER, POSTGRES_PASS should have the same values that are in the docker-compose.yml file, here an example:
+  	- In .evn file, Values from the variables POSTGRES_DB, POSTGRES_USER, POSTGRES_PASS should have the same values that are in the docker-compose.yml file, here an example:
 
 	![](https://raw.githubusercontent.com/dleonardoq/Myimages/refs/heads/main/docker-compose.png?token=GHSAT0AAAAAAC2P3HDYVN3PYJIA7UEGRRHYZ2GPIOA)
  	- Value from variable POSTGRES_DB should have also, the same value in init.sql file, in this example, our db is called users, like this:
@@ -58,17 +58,15 @@
 
 	- The rest of the variables are on you, JWT_KEY is to validate if a user is logged (it's a text), JWT_EXPIRES how long the session will be (5m, 1h, etc) and ERR_LOG_FILE is the directory to create a log file, example: './logs/error_logs.log'
 	 	
-3. Start Docker Desktop if you have it (ignore this step if you only have docker engine)
-4. Run the next command if is in a develop environment
+4. Start Docker Desktop if you have it (ignore this step if you only have docker engine)
+5.1. Run the next command if is in a develop environment
 ```sh
   docker compose -f docker-compose-dev.yml up
 ```
-5. Run the next command if is in a production environment
+5.2. Run the next command if is in a production environment
 ```sh
   docker compose  up
 ```
-6. You can test the different endpoints with the file api.http in the directory Resources, there's a admin user created by default to start, you can delete it after
-7. Before use almost all endpoints, you need to login 'cause this return a JWT
 
 ### Endpoints
 #### These endpoints return a json
@@ -105,6 +103,7 @@
 Here we're updating first_name, last_name, age and email of the given user document number
 - DELETE http://localhost:3000/user/{user_document_number}
 	- Delete an user, according to the user document number, you need to send the JWT in the Authorization header
+<a name="login"></a>
 - POST http://localhost:3000/user/login
 	- Log in, this endpoint returns a JWT, it has to be used for the rest of the endpoints
  	- You need to send an email and an user password in the body with the same parameter names:
@@ -133,4 +132,7 @@ Here we're updating first_name, last_name, age and email of the given user docum
 ```sh
   pnpm run test
 ```
+5. You can also test the different endpoints with the file api.http in the directory Resources, there's a admin user created by default to start, you can delete it after
+6. Before use almost all endpoints, you need to <p>(<a href="#login">Login</a>)</p> 'cause this return the JWT that you need to make all request
+
 <p align="right">(<a href="#readme-top">Go back up</a>)</p>
