@@ -126,12 +126,11 @@ Here we're updating first_name, last_name, age and email of the given user docum
 2. Enter to the project directory
 3. Before running test, be sure you have all dependencies, you can do this by running
 ```sh
-  docker exec -it [container-name] bash
-  pnpm install
+  npm install
 ```
 4. Open the terminal an type:
 ```sh
-  pnpm run test
+  npm run test
 ```
 5. You can also test the different endpoints with the file api.http in the directory Resources, there's a admin user created by default to start, you can delete it after
 6. Before use almost all endpoints, you need to <p>(<a href="#login">Login</a>)</p> 'cause this return the JWT that you need to make all request
