@@ -6,11 +6,11 @@ RUN mkdir -p /var/www/html/loginApp
 
 WORKDIR /var/www/html/loginApp
 
-COPY package*.json /var/www/html/loginApp
+COPY package*.json .
 
 RUN pnpm install
 
-COPY . /var/www/html/loginApp
+COPY . .
 
 EXPOSE 3000
 
