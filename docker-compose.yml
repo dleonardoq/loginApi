@@ -12,6 +12,7 @@ services:
       - login_users_api
     volumes:
       - .:/var/www/html/loginApp
+      - /var/www/html/loginApp/node_modules
 
   login_psql:
     container_name: login_psql
